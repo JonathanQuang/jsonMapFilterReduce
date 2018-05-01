@@ -3,13 +3,23 @@ var data = [{"females": 1966000, "country": "United States", "age": 0, "males": 
 console.log(data)
 
 var allWomen = function(){
-	return data.reduce(function(x,y){return x+y.females});
+	return data.reduce(function(x,y){return x + y.females},0);
 }
+
+document.getElementById("firstLine").innerHTML = "The total number of females in the year 2010 is " + allWomen();
 
 
 var maxMen = function(){
 	return data.reduce(function(x,y){if (x > y.males)
-						return x; 
-					else 
+						return x;
+					else
 						return y.males;})
 }
+
+document.getElementById("secondLine").innerHTML = maxMen() + " is the number of men in age group with the largest number of men";
+
+var averageAge = function(){
+	return data.reduce(function(x,y){return x + ((y.females+y.males)*y.age)},0) / data.reduce(function(x,y){return x + (y.females+y.males)},0);
+}
+
+document.getElementById("thirdLine").innerHTML = averageAge() + " is the average of the population in years"
